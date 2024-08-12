@@ -1,17 +1,21 @@
 <template>
-  <div>
-    <h2>Liste des Ventes</h2>
-    <table class="table">
+  <div class="card p-4">
+    <h3 class="card-title mb-4">Liste des ventes</h3>
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Produit</th>
-          <th>Montant</th>
+          <th>Nom du produit</th>
+          <th>Quantité</th>
+          <th>Prix unitaire</th>
+          <th>Total</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(vente, index) in ventes" :key="index">
-          <td>{{ vente.produit }}</td>
-          <td>{{ vente.montant }}</td>
+          <td>{{ vente.productName }}</td>
+          <td>{{ vente.quantity }}</td>
+          <td>{{ vente.price.toFixed(2) }}</td>
+          <td>{{ vente.total }}</td>
         </tr>
       </tbody>
     </table>
@@ -19,30 +23,18 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
-
 const props = defineProps({
-  ventes: {
-    type: Array,
-    required: true
-  }
+  ventes: Array
 });
 </script>
 
 <style scoped>
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
 .table {
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
-}
-
-.table thead {
-  background-color: #4682b4;
-  color: #ffffff;
-}
-
-.table th, .table td {
-  padding: 10px;
-  border: 1px solid #dddddd;
+  margin-bottom: 0;
 }
 </style>

@@ -22,12 +22,12 @@ const ajouterVente = (vente) => {
 
 <style>
 #app {
-  background: linear-gradient(135deg, rgba(255, 0, 150, 0.8), rgba(0, 204, 255, 0.8));
+  background: linear-gradient(135deg, rgba(200, 0, 120, 0.7), rgba(0, 204, 255, 0.8));
   min-height: 100vh;
   color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 0, 150, 0.5);
+  box-shadow: 0 0 20px rgba(200, 0, 120, 0.4);
 }
 
 .header {
@@ -38,15 +38,11 @@ const ajouterVente = (vente) => {
 .header h1 {
   font-family: 'Arial', sans-serif;
   font-size: 2.5rem;
-  background: linear-gradient(90deg, #ff007f, #00d4ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient 3s infinite;
-}
-
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 </style>

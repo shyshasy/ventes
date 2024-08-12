@@ -1,14 +1,22 @@
 <template>
-  <div class="vente-form">
-    <h2>Ajouter une Vente</h2>
+  <div class="card p-4">
+    <h3 class="card-title mb-4">Enregistrer une vente</h3>
     <form @submit.prevent="submitForm">
       <div class="mb-3">
-        <label for="produit">Produit :</label>
-        <input id="produit" v-model="produit" type="text" class="form-control" required />
+        <label for="productName" class="form-label">Nom du produit :</label>
+        <input id="productName" v-model="productName" type="text" class="form-control" />
       </div>
       <div class="mb-3">
-        <label for="montant">Montant :</label>
-        <input id="montant" v-model.number="montant" type="number" class="form-control" required />
+        <label for="quantity" class="form-label">Quantité :</label>
+        <input id="quantity" v-model.number="quantity" type="number" class="form-control" min="1" />
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Prix unitaire :</label>
+        <input id="price" v-model.number="price" type="number" class="form-control" min="0" step="0.01" />
+      </div>
+      <div class="mb-3">
+        <label for="total" class="form-label">Total :</label>
+        <input id="total" :value="total" type="text" class="form-control" readonly />
       </div>
       <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
@@ -16,36 +24,38 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref, computed } from 'vue';
 
-const produit = ref('');
-const montant = ref(0);
-const emit = defineEmits(['vente-enregistree']);
+const productName = ref('');
+const quantity = ref(1);
+const price = ref(0);
+
+const total = computed(() => {
+  return (quantity.value * price.value).toFixed(2);
+});
 
 const submitForm = () => {
-  const vente = { produit: produit.value, montant: montant.value };
+  if (!productName.value || quantity.value <= 0 || price.value <= 0) {
+    alert('Veuillez remplir tous les champs correctement.');
+    return;
+  }
+  const vente = {
+    productName: productName.value,
+    quantity: quantity.value,
+    price: price.value,
+    total: total.value,
+  };
   emit('vente-enregistree', vente);
-  produit.value = '';
-  montant.value = 0;
+  productName.value = '';
+  quantity.value = 1;
+  price.value = 0;
 };
 </script>
 
 <style scoped>
-.vente-form {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-  background-color: #4682b4;
-  border-color: #4682b4;
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  background-color: #4169e1;
-  border-color: #4169e1;
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 </style>
