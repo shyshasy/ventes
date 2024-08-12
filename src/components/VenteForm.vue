@@ -24,15 +24,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, defineEmits } from 'vue';
+
+const emit = defineEmits(['vente-enregistree']);
 
 const productName = ref('');
 const quantity = ref(1);
 const price = ref(0);
 
-const total = computed(() => {
-  return (quantity.value * price.value).toFixed(2);
-});
+const total = computed(() => (quantity.value * price.value).toFixed(2));
 
 const submitForm = () => {
   if (!productName.value || quantity.value <= 0 || price.value <= 0) {

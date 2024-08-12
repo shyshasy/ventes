@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container mt-5">
-    <div class="header">
+    <div class="header mb-4">
       <h1>Enregistrement des Ventes</h1>
     </div>
     <VenteForm @vente-enregistree="ajouterVente" />
@@ -32,7 +32,6 @@ const ajouterVente = (vente) => {
 
 .header {
   text-align: center;
-  margin-bottom: 30px;
 }
 
 .header h1 {
