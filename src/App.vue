@@ -22,7 +22,7 @@ const ajouterVente = (vente) => {
 
 <style>
 #app {
-  background: linear-gradient(135deg, rgba(200, 0, 120, 0.7), rgba(0, 204, 255, 0.8));
+  background: linear-gradient(135deg, rgba(200, 0, 120, 0.7), rgba(0, 204, 255, 0.7));
   min-height: 100vh;
   color: white;
   padding: 20px;
